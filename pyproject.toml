@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nakli-data"
+version = "0.1.0"
+description = "Safe fake Indian personal data, labelled for testing PII detectors: Aadhaar, PAN, GSTIN, UPI and more in English, Hindi, Hinglish and Odia"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Malaya Kumar Swain" }]
+requires-python = ">=3.10"
+dependencies = []
+keywords = ["synthetic-data", "test-data", "pii", "dpdp", "india", "aadhaar", "presidio", "privacy", "evaluation", "indic"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Security",
+  "Topic :: Software Development :: Testing",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+nakli = "nakli.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/Malaya-kumar-swain/nakli-data"
+Source = "https://github.com/Malaya-kumar-swain/nakli-data"
+Issues = "https://github.com/Malaya-kumar-swain/nakli-data/issues"
+
+[tool.setuptools.packages.find]
+include = ["nakli*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
