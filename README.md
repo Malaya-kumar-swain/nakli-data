@@ -32,6 +32,7 @@ From source: `git clone https://github.com/Malaya-kumar-swain/nakli-data && cd n
 |---|---|---|---|---|---|---|---|---|---|---|
 | Naive regex (ASCII-only) | 66% | 100% | 60% | 58% | 57% | 71% | 0% | 6% | 18% | 0% |
 | [Vismriti](https://github.com/Malaya-kumar-swain/vismriti) 0.1.0 | 81% | 100% | 75% | 74% | 69% | 84% | 100% | 18% | 30% | 0% |
+| [Vismriti](https://github.com/Malaya-kumar-swain/vismriti) 0.1.1 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | Presidio 2.2.366, default | 80% | 81% | 60% | 72% | 57% | 100% | 37% | 46% | 70% | 0% |
 | Presidio 2.2.366, very weak matches dropped | 77% | 99.9% | 60% | 58% | 57% | 100% | 37% | 46% | 25% | 0% |
 
@@ -41,7 +42,7 @@ What it shows:
 - **Invisible characters beat Aadhaar detection in all of them.**
 - **Presidio misses Aadhaar and PAN written in Indian-script digits.** Its 37% on Indian digits comes from phone numbers alone. Reported upstream as [presidio#2481](https://github.com/data-privacy-stack/presidio/issues/2481).
 - **Presidio's default settings flag ordinary 10-letter words as PAN.** For example, "Registered" is flagged with a very low score (0.01). That causes 224 false alarms here; dropping matches below 0.1 removes them. Its "hits" on look-alike PANs also come from that weak pattern.
-- **Vismriti handles Indian-script digits but not invisible characters or look-alike letters.** Both are on its roadmap.
+- **Vismriti 0.1.0 handled Indian-script digits but not invisible characters, look-alike letters or line breaks.** Version 0.1.1 fixed all three after this benchmark found them. Both projects have the same author, and the benchmark was used while making the fixes, so read the 0.1.1 row as a regression test rather than an independent result.
 
 How it was run: Presidio's pattern recognisers (Aadhaar, PAN, GSTIN, email, phone) were called directly, without an NLP model, so names were not scored for Presidio. Its context words, which can raise scores, also need that model. Results with a full Presidio setup may differ.
 
